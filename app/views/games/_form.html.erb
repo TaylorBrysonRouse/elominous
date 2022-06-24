@@ -10,6 +10,25 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= form.label :winner_id %>
+    <%= form.collection_select :winner_id, User.order(:first_name), :id, :formatted_name, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :winner_score %>
+    <%= form.text_field :winner_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :loser_id %>
+    <%= form.collection_select :loser_id, User.order(:first_name), :id, :formatted_name, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :loser_score %>
+    <%= form.text_field :loser_score %>
+  </div>
 
   <div>
     <%= form.submit %>

@@ -17,5 +17,8 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
     <%= yield %>
+    <% if @current_user.present?%>
+      <%= link_to "Sign out", destroy_user_session_path %>
+    <% end %>
   </body>
 </html>

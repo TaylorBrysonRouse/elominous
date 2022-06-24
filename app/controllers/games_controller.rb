@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /games
   def index
@@ -53,6 +54,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.fetch(:game, {})
+      params.fetch(:game, {}).permit(:winner_id, :winner_score, :loser_id, :loser_score)
     end
 end

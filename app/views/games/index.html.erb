@@ -5,6 +5,15 @@
 <div id="games">
   <% @games.each do |game| %>
     <%= render game %>
+    <h4> 
+      Game #<%= game.id %>
+    </h4>
+    <p>
+      Winner: <%= game.winner.formatted_name %><br>
+      Winner Score: <%= game.winner_score%><br>
+      Loser: <%= game.loser.formatted_name %><br>
+      Loser Score: <%= game.loser_score%>
+    </p>
     <p>
       <%= link_to "Show this game", game %>
     </p>
