@@ -25,6 +25,11 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
+      winner = User.find(params[:game][:winner_id])
+      loser = User.find(params[:game][:loser_id])
+      EloService.elo_score_generator(winner, loser)
+      winner.save!
+      loser.save!
       redirect_to @game, notice: "Game was successfully created."
     else
       render :new, status: :unprocessable_entity
