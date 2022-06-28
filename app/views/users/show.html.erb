@@ -2,4 +2,5 @@
 
 <p><%= @user.email %></p>
 <p><%= @user.elo_rating %></p>
+<%= link_to "Show User's Record", user_scores_path(@user) %><br>
 <%= link_to "Back to users", users_path %>
