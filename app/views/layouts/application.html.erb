@@ -11,20 +11,46 @@
   </head>
 
   <body>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-    <div class="container">
-      <div class="row">
-        <%= yield %>
-        <%= turbo_frame_tag "remote_modal", target: "_top" %>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <!-- icon -->
+            <%= link_to "Elominous", root_path, class: "d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" %>
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+              <li class="nav-item">
+                <!-- icon -->
+                <%= link_to "Games", games_path, class: "nav-link align-middle px-0" %>
+              </li>
+              <li class="nav-item">
+                <!-- icon -->
+                <%= link_to "Users", users_path, class: "nav-link align-middle px-0" %>
+              </li>
+              <li class="nav-item">
+                <!-- icon -->
+                <%= link_to "Scores", user_scores_path("1"), class: "nav-link align-middle px-0" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col py-3">
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+          <div class="container-fluid">
+            <div class="row flex">
+              <%= yield %>
+              <%= turbo_frame_tag "remote_modal", target: "_top" %>
+            </div>
+          </div>
+          <% if signed_in?%>
+            <%= link_to "Sign out", destroy_user_session_path %>
+          <% end %>
+        </div>
       </div>
     </div>
-    <% if signed_in?%>
-      <%= link_to "Sign out", destroy_user_session_path %>
-    <% end %>
   </body>
 </html>

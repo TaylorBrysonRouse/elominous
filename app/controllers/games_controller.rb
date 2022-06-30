@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   # GET /games
   def index
@@ -9,6 +9,7 @@ class GamesController < ApplicationController
 
   # GET /games/1
   def show
+    @game = Game.find(params[:id])
   end
 
   # GET /games/new
