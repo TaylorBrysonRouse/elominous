@@ -24,15 +24,20 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
 
-    if @game.save
-      winner = User.find(params[:game][:winner_id])
-      loser = User.find(params[:game][:loser_id])
-      EloService.elo_score_generator(winner, loser)
-      winner.save!
-      loser.save!
-      redirect_to @game, notice: "Game was successfully created."
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|  
+      if @game.save
+        winner = User.find(params[:game][:winner_id])
+        loser = User.find(params[:game][:loser_id])
+        EloService.elo_score_generator(winner, loser)
+        winner.save!
+        loser.save!
+        format.html { redirect_to games_url, notice: "Game was successfully created." }
+        format.json { render :show, status: :created, location: @game}
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @game.errors, status: :unprocessable_entity}
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+      end
     end
   end
 

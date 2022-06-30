@@ -1,36 +1,53 @@
 <%= form_with(model: game) do |form| %>
-  <% if game.errors.any? %>
+  <div class="mb-3">
+    <%= form.label :winner_id, style: "display-block", class: "form-label" %>
+    <%= form.collection_select :winner_id, User.order(:first_name), :id, :formatted_name, {include_blank: true}, {class: "form-select"} %>
     <div style="color: red">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
-
-      <ul>
-        <% game.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+      <% if game.errors.include?(:winner_id) %>
+        <% game.errors.full_messages_for(:winner_id).each do |error|%>
+          <%= error %>
         <% end %>
-      </ul>
+      <% end %>
     </div>
-  <% end %>
-  <div class="field">
-    <%= form.label :winner_id %>
-    <%= form.collection_select :winner_id, User.order(:first_name), :id, :formatted_name, include_blank: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :winner_score %>
-    <%= form.text_field :winner_score %>
+  <div class="mb-3">
+    <%= form.label :winner_score, style: "display-block", class: "form-label"  %>
+    <%= form.text_field :winner_score, class: "form-control" %>
+    <div style="color: red">
+      <% if game.errors.include?(:winner_score) %>
+        <% game.errors.full_messages_for(:winner_score).each do |error|%>
+          <%= error %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :loser_id %>
-    <%= form.collection_select :loser_id, User.order(:first_name), :id, :formatted_name, include_blank: true %>
+  <div class="mb-3">
+    <%= form.label :loser_id, style: "display-block", class: "form-label"  %>
+    <%= form.collection_select :loser_id, User.order(:first_name), :id, :formatted_name, {include_blank: true}, {class: "form-select"} %>
+    <div style="color: red">
+      <% if game.errors.include?(:loser_id) %>
+        <% game.errors.full_messages_for(:loser_id).each do |error|%>
+          <%= error %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :loser_score %>
-    <%= form.text_field :loser_score %>
+  <div class="mb-3">
+    <%= form.label :loser_score, style: "display-block", class: "form-label"  %>
+    <%= form.text_field :loser_score, class: "form-control" %>
+    <div style="color: red">
+      <% if game.errors.include?(:loser_score) %>
+        <% game.errors.full_messages_for(:loser_score).each do |error|%>
+          <%= error %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit "Create Game", class: "btn btn-success btn-block" %>
   </div>
 <% end %>

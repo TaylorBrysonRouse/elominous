@@ -1,9 +1,5 @@
-<h1>New game</h1>
+<%= render "remote_modal", title: "New game" do %>
+  
+  <%= render "form", game: @game %>
 
-<%= render "form", game: @game %>
-
-<br>
-
-<div>
-  <%= link_to "Back to games", games_path %>
-</div>
+<% end %>
