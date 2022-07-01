@@ -3,6 +3,7 @@
   <head>
     <title>Elominous</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,45 +12,37 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-            <!-- icon -->
-            <%= link_to "Elominous", root_path, class: "d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" %>
-            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-              <li class="nav-item">
-                <!-- icon -->
-                <%= link_to "Games", games_path, class: "nav-link align-middle px-0" %>
-              </li>
-              <li class="nav-item">
-                <!-- icon -->
-                <%= link_to "Users", users_path, class: "nav-link align-middle px-0" %>
-              </li>
-              <li class="nav-item">
-                <!-- icon -->
-                <%= link_to "Scores", user_scores_path("1"), class: "nav-link align-middle px-0" %>
-              </li>
-            </ul>
-          </div>
+    <div class="wrapper">
+
+      <div class="sidebar">
+        <div class="profile">
+          <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1-400x400.jpg.webp">
+          <h3>Placeholder</h3>
         </div>
-        <div class="col py-3">
-          <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-danger"><%= alert %></p>
-          <% end %>
-          <div class="container-fluid">
-            <div class="row flex">
-              <%= yield %>
-              <%= turbo_frame_tag "remote_modal", target: "_top" %>
-            </div>
-          </div>
-          <% if signed_in?%>
-            <%= link_to "Sign out", destroy_user_session_path %>
-          <% end %>
-        </div>
+        <ul>
+          <li>
+            <%= link_to root_path, class: "active" do %>
+              <span class="icon"><i class="fas fa-home"></i></span>
+              <span class="item">Home</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to games_path do %>
+              <span class="icon"><i class="fas fa-table-tennis"></i></span>
+              <span class="item">Games</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+              <span class="icon"><i class="fas fa-users"></i></span>
+              <span class="item">Users</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="contents">
+        <%= yield %>
+        <%= turbo_frame_tag "remote_modal", target: "_top" %>
       </div>
     </div>
   </body>
