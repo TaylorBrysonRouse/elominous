@@ -4,7 +4,7 @@ class GamesController < ApplicationController
 
   # GET /games
   def index
-    @games = Game.all
+    @games = Game.all.order("created_at DESC")
   end
 
   # GET /games/1

@@ -32,6 +32,7 @@ body {
         height: 100px;
         border-radius: 50%;
         margin: 0 auto;
+        border: 3px solid #bfbfbf;
       }
 
       h3{
@@ -46,12 +47,13 @@ body {
 					display: block;
 					padding: 13px 30px;
 					border-bottom: 2px solid #010101;
-					color: #005249;
+					color: #bfbfbf;
+          text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
 					font-size: 16px;
 					position: relative;
           text-decoration: none;
 					.icon {
-						color: #005249;
+						color: #bfbfbf;
 						width: 30px;
 						display: inline-block;
 					}
@@ -72,23 +74,41 @@ body {
     overflow: scroll;
     display: flex;
     .games {
-      margin: 1em 5em;
+      margin: 1em 2.5em 1em 5em;
       text-align: center;
+      h1{
+        color: #bfbfbf;
+        text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
+      }
     }
     .game {
       border: 3px solid #005249;
       background-color: #4B8178 !important;
+      margin-bottom: 1em !important;
 
       .text {
         margin-left: 5em;
         margin-right: 5em;
+        color: #bfbfbf;
+
+        a{
+          text-decoration: none;
+          font-weight: bold;
+          color: #bfbfbf;
+          text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
+        }
       }
     }
     .new-game {
       flex: 2;
+      margin: 1em 2.5em 1em 2.5em;
 
       .btn{
         position: fixed;
+        color: #bfbfbf;
+        text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
+        background-color: #005249;
+        border-color: #4B8178;
       }
     }
   }
