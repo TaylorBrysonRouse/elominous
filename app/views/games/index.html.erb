@@ -1,5 +1,5 @@
-<div class="games">
-  <h1>Games</h1>
+<div class="shadow p-3 mb-5 bg-body rounded games">
+  <h1 class="header-border">Games</h1>
 
   <p style="color: green"><%= notice %></p>
 
@@ -7,7 +7,7 @@
     <%= render game %>
       <div class="shadow p-3 mb-5 bg-body rounded game">
         <div class="text">
-          <%=link_to "Game ##{game.id}", game %>: <%= game.winner.formatted_name %> has beaten <%= game.loser.formatted_name %> in a set count of <%=game.winner_score.to_s %> to <%=game.loser_score %>
+          <%=link_to "Game ##{game.id}", game, class: "text-border" %>: <%= game.winner.formatted_name %> has beaten <%= game.loser.formatted_name %> in a set count of <%=game.winner_score.to_s %> to <%=game.loser_score %>
         </div>
       </div>
   <% end %>
@@ -15,7 +15,7 @@
 
 <div class="new-game">
   <div clas="absolute">
-    <%= link_to "New game", new_game_path, class: 'btn btn-primary', data: { turbo_frame: "remote_modal" } %>
+    <%= link_to "New game", new_game_path, class: 'btn btn-primary text-border', data: { turbo_frame: "remote_modal" } %>
   </div>
 </div>
 

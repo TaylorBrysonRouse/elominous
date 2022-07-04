@@ -1,3 +1,10 @@
+:root {
+  --p-yellow: #E1AD01;
+  --p-light-gray: #4B8178;
+  --p-dark-gray: #005249;
+  --p-white: #C3FCF2;
+}
+
 *{
   list-style: none;
   text-decoration: none;
@@ -8,8 +15,16 @@
 }
 
 body {
-  background: #E1AD01;
+  background: var(--p-yellow);
   height: 100%;
+}
+
+.header-border {
+  text-shadow: 2px 0 0 #4B8178, -2px 0 0 #4B8178, 0 2px 0 #4B8178, 0 -2px 0 #4B8178, 1px 1px #4B8178, -1px -1px 0 #4B8178, 1px -1px 0 #4B8178, -1px 1px 0 #4B8178;
+}
+
+.text-border {
+  text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
 }
 
 .wrapper {
@@ -32,11 +47,11 @@ body {
         height: 100px;
         border-radius: 50%;
         margin: 0 auto;
-        border: 3px solid #bfbfbf;
+        border: 3px solid var(--p-white);
       }
 
       h3{
-        color: #fff;
+        color: var(--p-white);
         margin: 10px 0 5px;
       }
     }
@@ -47,23 +62,22 @@ body {
 					display: block;
 					padding: 13px 30px;
 					border-bottom: 2px solid #010101;
-					color: #bfbfbf;
-          text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
+					color: var(--p-white);
 					font-size: 16px;
 					position: relative;
           text-decoration: none;
 					.icon {
-						color: #bfbfbf;
+						color: var(--p-white);
 						width: 30px;
 						display: inline-block;
 					}
 					&:hover {
-						background: #bfbfbf;
+						background: var(--p-white);
 						border-right: 1px solid #010101;
 					}
 				}
 				a.active {
-					background: #bfbfbf;
+					background: var(--p-white);
 					border-right: 2px solid #222;
 				}
 			}
@@ -76,26 +90,26 @@ body {
     .games {
       margin: 1em 2.5em 1em 5em;
       text-align: center;
+      border: 3px solid var(--p-white);
+      background-color: var(--p-dark-gray) !important;
       h1{
-        color: #bfbfbf;
-        text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
+        color: var(--p-white);
       }
     }
     .game {
-      border: 3px solid #005249;
-      background-color: #4B8178 !important;
+      border: 3px solid var(--p-dark-gray);
+      background-color: var(--p-light-gray) !important;
       margin-bottom: 1em !important;
 
       .text {
         margin-left: 5em;
         margin-right: 5em;
-        color: #bfbfbf;
+        color: var(--p-white);
 
         a{
           text-decoration: none;
           font-weight: bold;
-          color: #bfbfbf;
-          text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
+          color: var(--p-white);
         }
       }
     }
@@ -105,10 +119,9 @@ body {
 
       .btn{
         position: fixed;
-        color: #bfbfbf;
-        text-shadow: 2px 0 0 #005249, -2px 0 0 #005249, 0 2px 0 #005249, 0 -2px 0 #005249, 1px 1px #005249, -1px -1px 0 #005249, 1px -1px 0 #005249, -1px 1px 0 #005249;
-        background-color: #005249;
-        border-color: #4B8178;
+        color: var(--p-white);
+        background-color: var(--p-light-gray);
+        border-color: var(--p-dark-gray);
       }
     }
   }
