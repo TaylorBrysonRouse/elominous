@@ -1,10 +1,12 @@
-<h1>Users</h1>
+<div class="shadow p-3 mb-5 bg-body rounded content-box">  
+  <h1 class="header-border">Users</h1>
 
-<div class="users">
-  <% @users.each do |user| %>
-    <h4><%= user.formatted_name %></h4>
-    <p><%= user.email %></p>
-    <p><%= user.elo_rating %></p>
-    <%= link_to "Show this user", user %>
-  <% end %>
+  <div class="users">
+    <% @users.each do |user| %>
+      <h4><%= user.formatted_name %></h4>
+      <p><%= user.email %></p>
+      <p><%= user.elo_rating %></p>
+      <%= link_to "Show this user", user %>
+    <% end %>
+  </div>
 </div>

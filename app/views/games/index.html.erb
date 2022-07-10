@@ -1,4 +1,4 @@
-<div class="shadow p-3 mb-5 bg-body rounded games">
+<div class="shadow p-3 mb-5 bg-body rounded content-box">
   <h1 class="header-border">Games</h1>
 
   <p style="color: green"><%= notice %></p>
@@ -14,8 +14,9 @@
 </div>
 
 <div class="new-game">
-  <div clas="absolute">
-    <%= link_to "New game", new_game_path, class: 'btn btn-primary text-border', data: { turbo_frame: "remote_modal" } %>
+  <div class="shadow p-3 mb-5 bg-body rounded content-box fixed">
+    <h5 class="header-border">Just won a game? Log it here!</h5>
+    <%= link_to "New game", new_game_path, class: 'btn btn-primary text-border w-100', data: { turbo_frame: "remote_modal" } %>
   </div>
 </div>
 
