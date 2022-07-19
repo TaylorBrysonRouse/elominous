@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_and_belongs_to_many :customers
   has_many :wins, :class_name => 'Game', :foreign_key => 'winner_id'
   has_many :losses, :class_name => 'Game', :foreign_key => 'loser_id'
 

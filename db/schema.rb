@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_24_032841) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_020147) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "product_plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_plan_id"], name: "index_customers_on_product_plan_id"
+  end
+
+  create_table "customers_users", id: false, force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["customer_id"], name: "index_customers_users_on_customer_id"
+    t.index ["user_id"], name: "index_customers_users_on_user_id"
+  end
 
   create_table "games", force: :cascade do |t|
     t.bigint "winner_id", null: false
@@ -25,12 +40,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_032841) do
     t.index ["winner_id"], name: "index_games_on_winner_id"
   end
 
+  create_table "product_plans", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
-    t.integer "elo_rating"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -40,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_24_032841) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "customers", "product_plans"
   add_foreign_key "games", "users", column: "loser_id"
   add_foreign_key "games", "users", column: "winner_id"
 end

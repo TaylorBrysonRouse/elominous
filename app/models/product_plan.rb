@@ -1,0 +1,3 @@
+class ProductPlan < ApplicationRecord
+  
+end
