@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_020147) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_022121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,12 +36,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_020147) do
     t.integer "loser_score", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "league_id"
+    t.index ["league_id"], name: "index_games_on_league_id"
     t.index ["loser_id"], name: "index_games_on_loser_id"
     t.index ["winner_id"], name: "index_games_on_winner_id"
   end
 
+  create_table "leagues", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "sport_id", null: false
+    t.index ["customer_id"], name: "index_leagues_on_customer_id"
+    t.index ["sport_id"], name: "index_leagues_on_sport_id"
+  end
+
   create_table "product_plans", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "sports", force: :cascade do |t|
+    t.string "sport", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +73,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_020147) do
   end
 
   add_foreign_key "customers", "product_plans"
+  add_foreign_key "games", "leagues"
   add_foreign_key "games", "users", column: "loser_id"
   add_foreign_key "games", "users", column: "winner_id"
+  add_foreign_key "leagues", "customers"
+  add_foreign_key "leagues", "sports"
 end

@@ -11,8 +11,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  attribute :elo_rating, default: 1000
-
   def formatted_name
     "#{self.first_name} #{self.last_name}" 
   end
