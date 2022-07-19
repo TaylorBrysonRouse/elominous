@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_and_belongs_to_many :customers
+  has_many :sport_elo_ratings, class_name: 'SportEloRating', foreign_key: 'user_id'
   has_many :wins, :class_name => 'Game', :foreign_key => 'winner_id'
   has_many :losses, :class_name => 'Game', :foreign_key => 'loser_id'
 

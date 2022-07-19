@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_022121) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_025724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_022121) do
     t.string "name", null: false
   end
 
+  create_table "sport_elo_ratings", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "sport_id", null: false
+    t.integer "elo_rating", null: false
+    t.index ["sport_id"], name: "index_sport_elo_ratings_on_sport_id"
+    t.index ["user_id"], name: "index_sport_elo_ratings_on_user_id"
+  end
+
   create_table "sports", force: :cascade do |t|
     t.string "sport", null: false
   end
@@ -78,4 +86,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_022121) do
   add_foreign_key "games", "users", column: "winner_id"
   add_foreign_key "leagues", "customers"
   add_foreign_key "leagues", "sports"
+  add_foreign_key "sport_elo_ratings", "sports"
+  add_foreign_key "sport_elo_ratings", "users"
 end
