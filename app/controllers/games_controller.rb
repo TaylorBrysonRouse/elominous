@@ -29,7 +29,8 @@ class GamesController < ApplicationController
       if @game.save
         winner = User.find(params[:game][:winner_id])
         loser = User.find(params[:game][:loser_id])
-        EloService.elo_score_generator(winner, loser)
+        sport = League.find(@game.league_id).sport
+        EloService.elo_score_generator(winner, loser, sport)
         winner.save!
         loser.save!
         format.html { redirect_to games_url, notice: "Game was successfully created." }
@@ -65,6 +66,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.fetch(:game, {}).permit(:winner_id, :winner_score, :loser_id, :loser_score)
+      params.fetch(:game, {}).permit(:winner_id, :winner_score, :loser_id, :loser_score, :league_id)
     end
 end

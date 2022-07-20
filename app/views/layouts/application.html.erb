@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--  ADD SIDENAV URLS -->
 <html>
   <head>
     <title>Elominous</title>
@@ -17,7 +18,11 @@
       <div class="sidebar">
         <div class="profile">
           <img src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capybara-square-1-400x400.jpg.webp">
-          <h3 class="text-border"><%= current_user.formatted_name %></h3>
+          <% if signed_in? %>
+            <h3 class="text-border"><%= current_user.formatted_name %></h3>
+          <% else %>
+            <h3 class="text-border">Please sign in</h3>
+          <% end %>
         </div>
         <ul>
           <li>
@@ -27,19 +32,19 @@
             <% end %>
           </li>
           <li>
-            <%= link_to games_path, :class => current_class?(games_path) do %>
+            <%= link_to root_path, :class => current_class?(root_path) do %>
               <span class="icon text-border"><i class="fas fa-table-tennis"></i></span>
               <span class="item text-border">Games</span>
             <% end %>
           </li>
           <li>
-            <%= link_to users_path, :class => current_class?(users_path) do %>
+            <%= link_to root_path, :class => current_class?(root_path) do %>
               <span class="icon text-border"><i class="fas fa-users"></i></span>
               <span class="item text-border">Users</span>
             <% end %>
           </li>
           <li>
-            <%= link_to user_scores_path(current_user.id), :class => current_class?(user_scores_path(current_user.id)) do %>
+            <%= link_to root_path, :class => current_class?(root_path) do %>
               <span class="icon text-border"><i class="fas fa-trophy"></i></span>
               <span class="item text-border">Scores</span>
             <% end %>

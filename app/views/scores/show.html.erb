@@ -4,4 +4,4 @@
 
 <p>Match Record: <%= @user_match_record %></p>
 
-<%= link_to "Back to #{@user.formatted_name}'s Profile", @user %>
+<%= link_to "Back to #{@user.formatted_name}'s Profile", customer_user_path(:customer_id, @user) %>
