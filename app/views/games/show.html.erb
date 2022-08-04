@@ -3,8 +3,8 @@
 <%= render @game %>
 
 <div>
-  <%= link_to "Edit this game", edit_customer_league_game_path(current_user.customer, :league_id, @game) %> |
-  <%= link_to "Back to games", customer_league_games_path(current_user.customer, :league_id) %>
+  <%= link_to "Edit this game", edit_customer_league_game_path(current_user.customer, @league, @game) %> |
+  <%= link_to "Back to games", customer_league_games_path(current_user.customer, @league) %>
 
-  <%= button_to "Destroy this game", customer_league_games_path(current_user.customer, :league_id), method: :delete %>
+  <%= button_to "Destroy this game", customer_league_games_path(current_user.customer, @league), method: :delete %>
 </div>

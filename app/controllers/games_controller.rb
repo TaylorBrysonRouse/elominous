@@ -1,10 +1,12 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_league
   before_action :authenticate_user!
+
 
   # GET /games
   def index
-    @games = Game.all.order("created_at DESC")
+    @games = Game.where(league_id: @league).order("created_at DESC")
   end
 
   # GET /games/1
@@ -62,6 +64,10 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
+    end
+
+    def set_league
+      @league = League.find(params[:league_id])
     end
 
     # Only allow a list of trusted parameters through.
