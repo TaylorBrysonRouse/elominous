@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
 
   # GET /customers
   def index
-    @customers = Customer.all
+    @customers = current_user.customers
   end
 
   # GET /customers/1

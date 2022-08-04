@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def customer
     @current_customer
   end
+
+  def current_customer_id
+    @current_customer.id
+  end
 end

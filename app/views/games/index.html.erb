@@ -7,7 +7,7 @@
     <%= render game %>
       <div class="shadow p-3 mb-5 bg-body rounded game">
         <div class="text">
-          <%=link_to "Game ##{game.id}", game, class: "text-border" %>: <%= game.winner.formatted_name %> has beaten <%= game.loser.formatted_name %> in a set count of <%=game.winner_score.to_s %> to <%=game.loser_score %>
+          <%=link_to "Game ##{game.id}", customer_league_game_path(current_user.current_customer_id, :league_id, game), class: "text-border" %>: <%= game.winner.formatted_name %> has beaten <%= game.loser.formatted_name %> in a set count of <%=game.winner_score.to_s %> to <%=game.loser_score %>
         </div>
       </div>
   <% end %>
@@ -16,7 +16,7 @@
 <div class="new-game">
   <div class="shadow p-3 mb-5 bg-body rounded content-box fixed">
     <h5 class="header-border">Just won a game? Log it here!</h5>
-    <%= link_to "New game", new_game_path, class: 'btn btn-primary text-border w-100', data: { turbo_frame: "remote_modal" } %>
+    <%= link_to "New game", new_customer_league_game_path(current_user.current_customer_id, :league_id), class: 'btn btn-primary text-border w-100', data: { turbo_frame: "remote_modal" } %>
   </div>
 </div>
 
