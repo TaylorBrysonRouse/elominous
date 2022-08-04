@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  attr_accessor :current_customer
+
   has_and_belongs_to_many :customers
   has_many :sport_elo_ratings, class_name: 'SportEloRating', foreign_key: 'user_id' do
     def sport(sport_string)
@@ -20,5 +22,9 @@ class User < ApplicationRecord
 
   def formatted_name
     "#{self.first_name} #{self.last_name}" 
+  end
+
+  def customer
+    @current_customer
   end
 end
