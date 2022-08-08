@@ -2,5 +2,5 @@
 
 <p><%= @user.email %></p>
 <!-- Will need to have a drop down for each sport <p><%#= @user.elo_rating %></p> -->
-<%= link_to "Show User's Record", customer_user_scores_path(:customer_id, @user) %><br>
-<%= link_to "Back to users", customer_users_path %>
+<%= link_to "Show User's Record", customer_user_scores_path(@customer, @user) %><br>
+<%= link_to "Back to users", customer_users_path(@customer) %>

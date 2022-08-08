@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
-  before_action :set_league
+  before_action :set_user_variables
   before_action :authenticate_user!
 
 
@@ -33,9 +33,7 @@ class GamesController < ApplicationController
         loser = User.find(params[:game][:loser_id])
         sport = League.find(@game.league_id).sport
         EloService.elo_score_generator(winner, loser, sport)
-        winner.save!
-        loser.save!
-        format.html { redirect_to games_url, notice: "Game was successfully created." }
+        format.html { redirect_to customer_league_games_url(@customer, @league), notice: "Game was successfully created." }
         format.json { render :show, status: :created, location: @game}
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +46,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   def update
     if @game.update(game_params)
-      redirect_to @game, notice: "Game was successfully updated."
+      redirect_to customer_league_games_path(@customer, @league), notice: "Game was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -66,12 +64,13 @@ class GamesController < ApplicationController
       @game = Game.find(params[:id])
     end
 
-    def set_league
+    def set_user_variables
       @league = League.find(params[:league_id])
+      @customer = current_user.customer
     end
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.fetch(:game, {}).permit(:winner_id, :winner_score, :loser_id, :loser_score, :league_id)
+      params.fetch(:game, {}).permit(:winner_id, :winner_score, :loser_id, :loser_score, :league_id).with_defaults(league_id: params[:league_id])
     end
 end

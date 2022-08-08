@@ -10,7 +10,6 @@ class User < ApplicationRecord
   has_many :sport_elo_ratings, class_name: 'SportEloRating', foreign_key: 'user_id' do
     def sport(sport_string)
       sport = Sport.find_by(sport: sport_string)
-      puts sport.id
       find_by(sport_id: sport.id)
     end
   end

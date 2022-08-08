@@ -5,7 +5,7 @@
     <% @users.each do |user| %>
       <h4><%= user.formatted_name %></h4>
       <p><%= user.email %></p>
-      <%= link_to "Show this user", customer_user_url(current_user.customer, user) %>
+      <%= link_to "Show this user", customer_user_url(@customer, user) %>
     <% end %>
   </div>
 </div>
