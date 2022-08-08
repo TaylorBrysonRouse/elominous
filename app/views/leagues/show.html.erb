@@ -2,9 +2,12 @@
 
 <%= render @league %>
 
-<div>
-  <%= link_to "Edit this league", edit_league_path(@league) %> |
-  <%= link_to "Back to leagues", leagues_path %>
+<h2><%= @league.name%></h2><br>
+<h4>League Sport: <%= @league.sport.sport %></h4>
 
-  <%= button_to "Destroy this league", @league, method: :delete %>
+<%= link_to "#{@league.name} Games", customer_league_games_path(@customer, @league) %>
+
+<div>
+  <%= link_to "Back to leagues", customer_leagues_path(@customer) %>
+
 </div>

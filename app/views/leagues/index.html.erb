@@ -1,14 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Leagues</h1>
+<h1><%= @customer.name %> Leagues</h1><br>
 
 <div id="leagues">
   <% @leagues.each do |league| %>
     <%= render league %>
-    <p>
-      <%= link_to "Show this league", customer_league_path(current_user.customer, league) %>
-    </p>
+    <div>
+      <p>
+        <h2><%= league.name %></h2><br>
+        <h4>League Sport: <%= league.sport.sport %></h4><br>
+        <%= link_to "Show this league", customer_league_path(@customer, league) %>
+      </p>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New league", new_customer_league_path(current_user.customer) %>
+<%= link_to "New league", new_customer_league_path(@customer) %>

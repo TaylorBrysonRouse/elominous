@@ -1,5 +1,6 @@
 class LeaguesController < ApplicationController
   before_action :set_league, only: %i[ show edit update destroy ]
+  before_action :set_customer
 
   # GET /leagues
   def index
@@ -8,7 +9,7 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/1
   def show
-    @league = League.find(params[:league_id])
+    @league = League.find(params[:id])
   end
 
   # GET /leagues/new
@@ -49,7 +50,11 @@ class LeaguesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_league
-      @league = League.find(params[:league_id])
+      @league = League.find(params[:id])
+    end
+
+    def set_customer
+      @customer = current_user.customer
     end
 
     # Only allow a list of trusted parameters through.
